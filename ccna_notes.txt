@@ -1,0 +1,42 @@
+Frame-relay configuration, point-to-point:
+Create a subinterface on actual interface, than assign the dlci to interface
+
+frame-relay configuration, multipoint-to-point:
+(all routers are in the same subnet)
+on subinterface of actual interface:
+encap frame-relay
+assign ip in same subnet as the other routers' Serial IPs
+use frame-relay map to map the other routers' Serial IPs with broadcast as a parameter
+
+
+Hierachial designs!
+
+OSPF:
+DRs are the distribution/collection point for LSAs
+BDRs are the backups for the DRs
+highest RID(manual RID/highest Loopback/IP Interface)/priority is the DR
+NON-BDRs/DRs are DROTHERs 
+edge routers are ASBRs, they can import OSPF info to non-OSPF networks
+these elections are not in point-to-point networks, only in multiaccess networks with switches connecting the routers
+configure MD5 authentication (message-digest-key) (area _ authentication _ )
+
+ABRs have interfaces going to multiple areas, manual route summarization
+ASBRs, manual route summarization
+
+backbone routers have all interfaces in area 0
+
+LSA 1: Router LSA
+LSA 2: Network LSA
+LSA 3 - 4: Summary LSA
+LSA 5: AS External LSA
+(basic multiarea config needs 1-5)
+LSA 6: Multicast OSPF LSA
+LSA 7: NSSA
+
+EIGRP
+use passive-interface on LAN interfaces, interfaces where other routers aren't going to be connected to
+
+inevitable, anberlin
+runaway love, diamond rings
+someday, the growlers
+
